@@ -12,17 +12,23 @@ fun main() = application {
 
     program {
         val r = 35.0
-        val ts = TravellingSalesman(width,height,5)
+        val ts = TravellingSalesman(width, height, 5)
         println("${ts.points[0]},${ts.points[1]}")
-        println(ts.createRoad(ts.points[0], ts.points[1]))
+        println(ts.roadValue(ts.points[0], ts.points[1]))
         extend {
             drawer.clear(ColorRGBa.BLACK)
             drawer.fill = ColorRGBa.WHITE
 
-            ts.points.forEach { drawer.circle(it.x.toDouble(),it.y.toDouble(),r) }
+            ts.points.forEach { drawer.circle(it.x.toDouble(), it.y.toDouble(), r) }
 
             drawer.stroke = ColorRGBa.WHITE
-            drawer.lineSegment(10.0, height / 2.0 - 20.0, width - 10.0, height / 2.0 - 20.0)
+            drawer.strokeWeight = 8.0
+            drawer.lineSegment(
+                ts.points[0].x.toDouble(),
+                ts.points[0].y.toDouble(),
+                ts.points[1].x.toDouble(),
+                ts.points[1].y.toDouble()
+            )
         }
     }
 }
